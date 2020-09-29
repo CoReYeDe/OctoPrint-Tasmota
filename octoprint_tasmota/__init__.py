@@ -309,7 +309,8 @@ class tasmotaPlugin(octoprint.plugin.SettingsPlugin,
 				response = dict()
 				response["POWER%s" % plug["idx"]] = "ON"
 			else:
-				webresponse = requests.get("http://" + plug["ip"] + "/cm?user=" + plug["username"] + "&password=" + requests.utils.quote(plug["password"]) + "&cmnd=Power" + str(plug["idx"]) + "%20on")
+				requests.get("http://" + plug["ip"] + "/cm?user=" + plug["username"] + "&password=" + requests.utils.quote(plug["password"]) + "&cmnd=Power" + str(plug["idx"]) + "%20on")
+				webresponse = requests.get("http://" + plug["ip"] + "/cm?user=" + plug["username"] + "&password=" + requests.utils.quote(plug["password"]) + "&cmnd=Power" + str(plug["idx"]))
 				response = webresponse.json()
 			chk = response["POWER%s" % plug["idx"]]
 		except:
@@ -365,7 +366,8 @@ class tasmotaPlugin(octoprint.plugin.SettingsPlugin,
 
 			if not plug["use_backlog"]:
 				self._tasmota_logger.debug("Not using backlog commands")
-				webresponse = requests.get("http://" + plug["ip"] + "/cm?user=" + plug["username"] + "&password=" + requests.utils.quote(plug["password"]) + "&cmnd=Power" + str(plug["idx"]) + "%20off")
+				requests.get("http://" + plug["ip"] + "/cm?user=" + plug["username"] + "&password=" + requests.utils.quote(plug["password"]) + "&cmnd=Power" + str(plug["idx"]) + "%20off")
+				webresponse = requests.get("http://" + plug["ip"] + "/cm?user=" + plug["username"] + "&password=" + requests.utils.quote(plug["password"]) + "&cmnd=Power" + str(plug["idx"]))
 				response = webresponse.json()
 			chk = response["POWER%s" % plug["idx"]]
 		except:
